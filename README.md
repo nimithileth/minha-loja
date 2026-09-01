@@ -2,7 +2,7 @@
 
 Loja virtual fictícia de jogos RPG, construída com HTML, CSS e JavaScript puro — sem frameworks, sem dependências, sem build step.
 
-Projeto desenvolvido como exercício prático de front-end durante o **Bootcamp Minha Loja no Ar**.
+Projeto desenvolvido como exercício prático de front-end durante o **Bootcamp | AWS AI FDE for Commerce**.
 
 ---
 
