@@ -1,0 +1,505 @@
+/* =========================================
+   VARIÁVEIS GLOBAIS (DARK MODE)
+========================================= */
+:root {
+    --bg-color: #0f0f13;
+    --card-bg: #1a1a24;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --neon-accent: #00ffcc;
+    --neon-hover: #00e6b8;
+    --roxo-accent: #7b2cbf;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0; padding: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* =========================================
+   CABEÇALHO GERAL (HEADER)
+========================================= */
+header {
+    background-color: var(--card-bg); padding: 15px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid var(--roxo-accent); position: sticky; top: 0; z-index: 100;
+}
+header h1 { margin: 0; }
+header h1 a { color: var(--neon-accent); text-transform: uppercase; letter-spacing: 2px; font-size: 24px; text-decoration: none; }
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.links-uteis a { color: var(--text-main); text-decoration: none; font-weight: bold; transition: color 0.3s; }
+.links-uteis a:hover { color: var(--neon-accent); }
+.btn-abrir-carrinho {
+    background-color: var(--roxo-accent); color: white; border: none; padding: 10px 20px;
+    border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+}
+.btn-abrir-carrinho:hover { background-color: #5a189a; }
+.contador-badge { background: var(--neon-accent); color: #000; border-radius: 50%; padding: 2px 8px; font-size: 14px; }
+
+/* =========================================
+   ESTRUTURA E BOTÕES
+========================================= */
+.container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+.voltar, .btn-voltar { color: var(--text-muted); text-decoration: none; display: inline-block; margin-bottom: 20px; transition: 0.3s; }
+.voltar:hover, .btn-voltar:hover { color: var(--neon-accent); }
+
+/* =========================================
+   PÁGINA INICIAL (VITRINE)
+========================================= */
+.busca-container { margin-bottom: 30px; }
+.busca-container input {
+    width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #333;
+    background: var(--bg-color); color: white; font-size: 16px; outline: none; box-sizing: border-box;
+}
+.busca-container input:focus { border-color: var(--neon-accent); box-shadow: 0 0 10px rgba(0, 255, 204, 0.2); }
+#vitrine { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.produto { background-color: var(--card-bg); border-radius: 10px; padding: 15px; text-align: center; transition: 0.3s; border: 1px solid transparent; }
+.produto:hover { transform: translateY(-5px); border-color: var(--roxo-accent); box-shadow: 0 10px 20px rgba(123, 44, 191, 0.3); }
+.produto img { width: 100%; border-radius: 8px; margin-bottom: 15px; }
+.produto h3 { margin: 10px 0; font-size: 18px; }
+.produto p.categoria { color: var(--text-muted); font-size: 14px; margin: 5px 0; }
+.produto p.preco { color: var(--neon-accent); font-size: 20px; font-weight: bold; margin: 15px 0; }
+.btn-add { background-color: transparent; color: var(--neon-accent); border: 1px solid var(--neon-accent); padding: 10px; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.btn-add:hover { background-color: var(--neon-accent); color: #000; }
+
+/* =========================================
+   CARRINHO LATERAL (OFF-CANVAS)
+========================================= */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; opacity: 0; visibility: hidden; transition: 0.3s; }
+.overlay.ativo { opacity: 1; visibility: visible; }
+.carrinho-lateral { position: fixed; top: 0; right: -400px; width: 100%; max-width: 350px; height: 100vh; background-color: var(--card-bg); z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); padding: 20px; transition: right 0.3s ease-in-out; display: flex; flex-direction: column; box-sizing: border-box; border-left: 2px solid var(--roxo-accent); }
+.carrinho-lateral.ativo { right: 0; }
+.carrinho-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 15px; }
+.carrinho-header h2 { margin: 0; color: var(--neon-accent); }
+.btn-fechar { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+.btn-fechar:hover { color: var(--neon-accent); }
+#lista-carrinho { list-style: none; padding: 0; margin: 0; flex-grow: 1; overflow-y: auto; }
+#lista-carrinho li { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 15px 0; font-size: 14px; gap: 8px; }
+.btn-remover { background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 2px 6px; border-radius: 3px; transition: 0.2s; flex-shrink: 0; }
+.btn-remover:hover { color: #ff6b6b; background: rgba(255,107,107,0.1); }
+.carrinho-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: auto; }
+.total-linha { display: flex; justify-content: space-between; font-size: 20px; font-weight: bold; margin-bottom: 20px; }
+.total-linha span:last-child { color: var(--neon-accent); }
+.btn-checkout { background-color: var(--neon-accent); color: #000; border: none; padding: 15px; width: 100%; border-radius: 5px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.btn-checkout:hover { background-color: var(--neon-hover); }
+
+/* =========================================
+   PÁGINA DE DETALHES (PDP)
+========================================= */
+.pdp-grid { display: flex; gap: 40px; flex-wrap: wrap; background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid #333; }
+.pdp-imagem { flex: 1; min-width: 300px; max-width: 300px; }
+.pdp-imagem img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--roxo-accent); object-fit: contain; }
+.pdp-info { flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; }
+.pdp-info h2 { font-size: 32px; margin: 0 0 10px 0; color: var(--neon-accent); }
+.pdp-info .categoria { color: var(--text-muted); font-size: 16px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.pdp-info .descricao { font-size: 18px; line-height: 1.6; margin-bottom: 30px; }
+.pdp-info .preco { font-size: 36px; font-weight: bold; color: white; margin-bottom: 30px; }
+.pdp-info .btn-add { background-color: var(--neon-accent); color: #000; border: none; padding: 15px; border-radius: 5px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; width: 100%; }
+.pdp-info .btn-add:hover { background-color: var(--neon-hover); }
+
+/* =========================================
+   PÁGINA DE CHECKOUT
+========================================= */
+.checkout-grid { display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
+.coluna-form { flex: 2; background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid #333; min-width: 300px; }
+.coluna-form h2 { color: var(--neon-accent); margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 5px; color: var(--text-muted); }
+.form-group input { width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #333; background: var(--bg-color); color: white; font-size: 16px; box-sizing: border-box; outline: none; }
+.form-group input:focus { border-color: var(--roxo-accent); }
+.coluna-resumo { flex: 1; background: var(--card-bg); padding: 30px; border-radius: 10px; border: 1px solid var(--roxo-accent); height: fit-content; min-width: 250px; }
+.coluna-resumo h2 { margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
+#lista-resumo { list-style: none; padding: 0; margin: 0 0 20px 0; }
+#lista-resumo li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dotted #333; font-size: 14px; }
+.total-box { font-size: 22px; font-weight: bold; text-align: right; color: var(--neon-accent); margin-bottom: 20px; }
+.btn-confirmar { background-color: var(--neon-accent); color: #000; border: none; padding: 15px; width: 100%; border-radius: 5px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.btn-confirmar:hover { background-color: var(--neon-hover); }
+.modal-sucesso { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; text-align: center; }
+.modal-sucesso.ativo { opacity: 1; visibility: visible; }
+.modal-sucesso h1 { color: var(--neon-accent); font-size: 40px; margin-bottom: 10px; }
+.modal-sucesso p { color: var(--text-muted); font-size: 18px; }
+.spinner { margin-top: 20px; width: 40px; height: 40px; border: 4px solid var(--card-bg); border-top: 4px solid var(--roxo-accent); border-radius: 50%; animation: girar 1s linear infinite; }
+@keyframes girar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* =========================================
+   PÁGINA COMO FIZ (DOCUMENTAÇÃO)
+========================================= */
+.section-card { background-color: var(--card-bg); border-radius: 10px; padding: 30px; margin-bottom: 30px; border: 1px solid #333; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.section-card h2 { color: var(--neon-accent); border-bottom: 1px solid #333; padding-bottom: 10px; }
+video { width: 100%; border-radius: 8px; border: 2px solid var(--roxo-accent); background: #000; }
+.roteiro-lista { list-style-type: none; padding: 0; }
+.roteiro-lista li { background: rgba(123, 44, 191, 0.1); margin-bottom: 15px; padding: 15px; border-left: 4px solid var(--roxo-accent); border-radius: 0 5px 5px 0; }
+.roteiro-lista strong { color: var(--neon-accent); }
+.mermaid-container { background: #1a1a24; padding: 20px; border-radius: 8px; text-align: center; overflow-x: auto; margin-top: 20px; }
+
+/* =========================================
+   RESPONSIVIDADE MOBILE
+========================================= */
+@media (max-width: 600px) {
+    header { flex-direction: column; gap: 12px; text-align: center; padding: 12px 5%; }
+    .header-actions { width: 100%; justify-content: center; }
+    header h1 a { font-size: 20px; }
+
+    #vitrine { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+    .pdp-grid { flex-direction: column; }
+    .pdp-imagem, .pdp-info { min-width: unset; }
+    .pdp-info h2 { font-size: 24px; }
+    .pdp-info .preco { font-size: 28px; }
+
+    .checkout-grid { flex-direction: column; }
+    .coluna-form, .coluna-resumo { min-width: unset; }
+
+    .carrinho-lateral { max-width: 100%; }
+}
+
+/* =========================================
+   SISTEMA DE ASSINATURA (WoW e similares)
+========================================= */
+
+/* Badge "Assinatura" exibido no card da vitrine e na PDP */
+.badge-assinatura {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--roxo-accent), #a855f7);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.badge-assinatura-pdp {
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+/* Botão "Ver Planos" na vitrine — estilo diferenciado */
+.btn-ver-planos {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--roxo-accent) !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-ver-planos:hover {
+    background-color: #5a189a !important;
+    color: #fff !important;
+}
+
+/* Container da lista de planos na PDP */
+.planos-container {
+    margin-bottom: 28px;
+}
+.planos-titulo {
+    font-size: 16px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 14px 0;
+    font-weight: bold;
+}
+
+/* Cada opção de plano — funciona como radio button estilizado */
+.plano-opcao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+.plano-opcao:hover {
+    border-color: var(--roxo-accent);
+}
+/* Quando selecionado, borda neon e fundo levemente destacado */
+.plano-opcao.selecionado {
+    border-color: var(--neon-accent);
+    background: rgba(0, 255, 204, 0.05);
+}
+
+/* Esconde o radio nativo — o visual é feito pelo label */
+.plano-opcao input[type="radio"] {
+    display: none;
+}
+
+/* Textos internos do plano */
+.plano-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+.plano-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-main);
+}
+.plano-duracao {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Grupo de preço + badge de desconto */
+.plano-preco-grupo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+.plano-preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--neon-accent);
+    white-space: nowrap;
+}
+.plano-desconto {
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+    background-color: var(--neon-accent);
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* Responsividade mobile para o seletor de planos */
+@media (max-width: 600px) {
+    .plano-opcao {
+        flex-wrap: wrap;
+    }
+}
+
+/* =========================================
+   MÉTODO DE PAGAMENTO (CHECKOUT)
+========================================= */
+
+.metodo-pagamento {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* Cada opção de método é um label que envolve um radio oculto */
+.metodo-opcao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    user-select: none;
+}
+.metodo-opcao:hover { border-color: var(--roxo-accent); }
+.metodo-opcao.selecionado {
+    border-color: var(--neon-accent);
+    background: rgba(0, 255, 204, 0.05);
+}
+.metodo-opcao input[type="radio"] { display: none; }
+.metodo-icone { font-size: 22px; line-height: 1; }
+.metodo-texto {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.metodo-desconto-badge {
+    font-size: 11px;
+    font-weight: bold;
+    background: var(--neon-accent);
+    color: #000;
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+/* Área do QR Code PIX simulado */
+.pix-instrucoes {
+    background: rgba(0, 255, 204, 0.03);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.pix-qrcode { display: flex; justify-content: center; margin-bottom: 16px; }
+.qr-simulado {
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--neon-accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0,255,204,0.04),
+        rgba(0,255,204,0.04) 4px,
+        transparent 4px,
+        transparent 12px
+    );
+}
+.qr-inner { font-size: 48px; line-height: 1; }
+.pix-chave-label {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.pix-chave-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--bg-color);
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-family: monospace;
+    word-break: break-all;
+}
+.btn-copiar {
+    background: transparent;
+    border: 1px solid var(--neon-accent);
+    color: var(--neon-accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.btn-copiar:hover { background: var(--neon-accent); color: #000; }
+.pix-nota {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Linha de desconto no resumo do pedido */
+.desconto-pix-resumo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px dotted #333;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   SEÇÃO DE DLCs NA PDP
+========================================= */
+
+.dlcs-secao {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+}
+.dlcs-titulo {
+    font-size: 20px;
+    color: var(--neon-accent);
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.dlcs-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Card individual de DLC */
+.dlc-card {
+    display: flex;
+    gap: 16px;
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 16px;
+    transition: border-color 0.2s;
+}
+.dlc-card:hover { border-color: var(--roxo-accent); }
+.dlc-imagem {
+    width: 140px;
+    height: 66px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid #222;
+    background: #111;
+}
+.dlc-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.dlc-nome {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--text-main);
+}
+.dlc-descricao {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+.dlc-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+}
+.dlc-preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--neon-accent);
+    white-space: nowrap;
+}
+.btn-dlc {
+    background: transparent;
+    color: var(--neon-accent);
+    border: 1px solid var(--neon-accent);
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+.btn-dlc:hover { background: var(--neon-accent); color: #000; }
+
+/* Responsividade mobile para DLCs */
+@media (max-width: 600px) {
+    .metodo-pagamento { flex-direction: column; }
+    .dlc-card { flex-direction: column; }
+    .dlc-imagem { width: 100%; height: auto; }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calabouço do Pix | Como Fiz</title>
+    <meta name="description" content="Documentação técnica do Calabouço do Pix: arquitetura e apresentação em vídeo.">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Mermaid: biblioteca de diagramas, carregada como módulo ES6 -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Calabouço do Pix</a></h1>
+        <div class="header-actions">
+            <div class="links-uteis">
+                <a href="index.html">← Voltar para a Loja</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- SEÇÃO 1: O VÍDEO -->
+        <div class="section-card">
+            <h2>1. Apresentação Técnica (Vídeo)</h2>
+            <p>Abaixo está o vídeo explicando todas as decisões técnicas e arquiteturais do projeto,
+               com o código rodando ao vivo e a auditoria do Lighthouse.</p>
+
+            <video controls>
+                <source src="meu-video.mp4" type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeo. 
+                <a href="meu-video.mp4">Baixe o vídeo aqui.</a>
+            </video>
+        </div>
+
+        <!-- SEÇÃO 2: ARQUITETURA E BFF -->
+        <div class="section-card">
+            <h2>2. Arquitetura e Integração Mobile (BFF)</h2>
+            <p>O diagrama abaixo mapeia o fluxo completo do cliente, da vitrine à simulação de checkout.
+               Inclui também a projeção conceitual de um <strong>Backend For Frontend (BFF)</strong>,
+               mostrando onde ele se encaixaria se a loja ganhasse um aplicativo mobile nativo.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    graph TD
+                    U(("Navegador do Cliente"))
+
+                    subgraph Fase1 ["1. O Acesso e a Hospedagem"]
+                    Hospedagem["GitHub Pages (funciona como CDN)"]
+                    U -->|"1. Cliente digita a URL"| Hospedagem
+                    Hospedagem -->|"2. Devolve HTML, CSS e JS"| U
+                    end
+
+                    subgraph Fase2 ["2. O Cérebro Headless"]
+                    AppJS{"JavaScript (Lógica)"}
+                    Catalogo[("products.json (Catálogo)")]
+                    Vitrine["Página Inicial (Vitrine)"]
+                    PDP["Página de Detalhes (PDP)"]
+                    U -->|"3. Carrega o site e chama o JS"| AppJS
+                    AppJS -->|"4. Faz o Fetch (busca dados)"| Catalogo
+                    Catalogo -->|"5. Entrega a lista de jogos"| AppJS
+                    AppJS -->|"6. Monta a Vitrine dinamicamente"| Vitrine
+                    AppJS -->|"7. Se clicar num jogo, monta a PDP"| PDP
+                    end
+
+                    subgraph Fase3 ["3. Carrinho e Checkout"]
+                    LS(("LocalStorage (memória do navegador)"))
+                    Checkout["Checkout Simulado"]
+                    Vitrine -->|"8. Adiciona item"| LS
+                    PDP -->|"8. Adiciona item"| LS
+                    LS -->|"9. Avança para pagamento"| Checkout
+                    Checkout -->|"10. Limpa a memória e volta pra Home"| U
+                    end
+
+                    subgraph Fase4 ["4. Expansão Mobile — Arquitetura BFF"]
+                    AppMobile(("Aplicativo Mobile"))
+                    BFF{"BFF (Backend For Frontend)"}
+                    DBReal[("Banco de Dados na Nuvem")]
+                    AppMobile -->|"A. Pede dados da loja"| BFF
+                    BFF -->|"B. Busca dados brutos completos"| DBReal
+                    BFF -->|"C. Filtra e devolve só o essencial"| AppMobile
+                    end
+                </div>
+            </div>
+        </div>
+    </div><!-- fim .container -->
+
+</body>
+</html>

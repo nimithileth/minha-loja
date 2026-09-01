@@ -1,0 +1,259 @@
+[
+  {
+    "id": 1,
+    "nome": "Baldur's Gate: Enhanced Edition",
+    "categoria": "RPG / Dungeons & Dragons",
+    "preco": 59.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/228280/library_600x900.jpg",
+    "descricao": "O clássico que originou a lenda. Siga a jornada de um órfão em busca de suas origens em um mundo de conspirações e magia, em pleno coração dos Reinos Esquecidos. A Enhanced Edition restaura o RPG original com conteúdo novo e melhorias modernas."
+  },
+  {
+    "id": 2,
+    "nome": "Baldur's Gate II: Enhanced Edition",
+    "categoria": "RPG / Dungeons & Dragons",
+    "preco": 59.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/257350/library_600x900.jpg",
+    "descricao": "A sequência aclamada como um dos maiores RPGs já feitos. Continue a saga do Filho de Bhaal enfrentando o arquimago Irenicus em uma aventura épica de vontade, poder e redenção."
+  },
+  {
+    "id": 3,
+    "nome": "Baldur's Gate 3",
+    "categoria": "RPG / Dungeons & Dragons",
+    "preco": 199.99,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/library_600x900.jpg",
+    "descricao": "Um RPG épico baseado em Dungeons & Dragons 5ª edição. Monte seu grupo, tome decisões que mudam o mundo e enfrente o Flagelo das Mentes em uma das aventuras mais ricas já criadas.",
+    "dlcs": [
+      {
+        "id": "bg3-deluxe",
+        "nome": "Digital Deluxe Edition DLC",
+        "descricao": "Inclui itens cosméticos exclusivos: dado personalizado, máscara do Metamorfo (de Divinity: OS2), arte digital, trilha sonora e pacote de pinturas.",
+        "preco": 97.45,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/2378500/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Divinity: Original Sin - Enhanced Edition",
+    "categoria": "RPG / Turnos",
+    "preco": 54.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/373420/library_600x900.jpg",
+    "descricao": "Explore o mundo de Rivellon com um amigo em co-op local ou online. Combate por turnos profundo, puzzles criativos e uma narrativa cheia de escolhas morais que definem quem você é."
+  },
+  {
+    "id": 5,
+    "nome": "Divinity: Original Sin 2 - Definitive Edition",
+    "categoria": "RPG / Turnos",
+    "preco": 234.10,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/435150/library_600x900.jpg",
+    "descricao": "Vencedor de múltiplos prêmios de jogo do ano. Escolha entre seis raças únicas, forme seu grupo e lute pelo direito de se tornar um deus em um mundo que teme a magia.",
+    "dlcs": [
+      {
+        "id": "dos2-divine",
+        "nome": "Divine Ascension",
+        "descricao": "Pacote de colecionador digital: crônicas do mundo de Rivellon, trilha sonora orquestral exclusiva com 35 faixas, guia de pintura e arte conceitual.",
+        "preco": 49.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/715950/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "nome": "The Elder Scrolls IV: Oblivion Remastered",
+    "categoria": "RPG / Mundo Aberto",
+    "preco": 264.90,
+    "imagem": "https://shared.steamstatic.com/store_item_assets/steam/apps/2623190/b52322f78cbdc7e6c267d873056abba7916f7ff3/library_600x900_2x.jpg?t=1753715747",
+    "descricao": "O RPG de mundo aberto que definiu uma geração, reconstruído com visuais deslumbrantes no Unreal Engine 5. Explore Cyrodiil como nunca antes, com a mesma liberdade irresistível do clássico de 2006."
+  },
+  {
+    "id": 7,
+    "nome": "The Elder Scrolls V: Skyrim",
+    "categoria": "RPG / Mundo Aberto",
+    "preco": 149.00,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/489830/library_600x900.jpg",
+    "descricao": "O Dovahkiin desperta em uma terra de vikings, dragões e magias ancestrais. Explore cavernas geladas, cidades imponentes e masmorras esquecidas no RPG de mundo aberto que definiu uma geração."
+  },
+  {
+    "id": 8,
+    "nome": "Dragon Age: Origins",
+    "categoria": "RPG / Fantasia",
+    "preco": 74.99,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/47810/library_600x900.jpg",
+    "descricao": "A origem de uma das franquias mais amadas da BioWare. Escolha entre seis origens distintas e lidere a última ordem dos Caçadores de Darkspawn em uma guerra épica pela sobrevivência de Ferelden."
+  },
+  {
+    "id": 9,
+    "nome": "Dragon Age II",
+    "categoria": "RPG / Fantasia",
+    "preco": 74.99,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1238040/library_600x900.jpg",
+    "descricao": "Você é Hawke, um refugiado que se torna lenda. Uma história mais íntima e pessoal que examina o custo do poder, a instabilidade política e o que significa defender aqueles que você ama."
+  },
+  {
+    "id": 10,
+    "nome": "Dragon Age: Inquisition",
+    "categoria": "RPG / Fantasia",
+    "preco": 209.00,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1222690/library_600x900.jpg",
+    "descricao": "Assuma o papel do Inquisidor e comande um exército de heróis para fechar uma fissura que ameaça rasgar o mundo. Escolhas políticas, alianças e romances moldam o destino de Thedas.",
+    "dlcs": [
+      {
+        "id": "dai-hakkon",
+        "nome": "Jaws of Hakkon",
+        "descricao": "Descubra o destino do último Inquisidor e do poderoso dragão que ele caçava. Explore uma região selvagem habitada pelos Avvar, guerreiros que guardam segredos de uma fortaleza Tevinter.",
+        "preco": 29.90,
+        "imagem": "https://static.wikia.nocookie.net/dragonage/images/0/09/Official.jpg/revision/latest/scale-to-width-down/1000?cb=20150331012031"
+      },
+      {
+        "id": "dai-descent",
+        "nome": "The Descent",
+        "descricao": "Mergulhe nas profundezas subterrâneas dos Caminhos Profundos. Investigue uma série de terremotos misteriosos que ameaçam o mundo de Thedas a partir de baixo.",
+        "preco": 29.90,
+        "imagem": "https://static.wikia.nocookie.net/dragonage/images/4/47/Dragon_Age_The_Descent_Cover_Image.png/revision/latest/scale-to-width-down/1000?cb=20150812005023"
+      },
+      {
+        "id": "dai-trespasser",
+        "nome": "Trespasser",
+        "descricao": "O DLC final e narrativo de Inquisition. A Inquisição enfrenta um julgamento político que pode mudar tudo — e os fios desta história ligam diretamente aos eventos de The Veilguard.",
+        "preco": 29.90,
+        "imagem": "https://static.wikia.nocookie.net/dragonage/images/a/a2/Trespasser_Pic.PNG/revision/latest/scale-to-width-down/1000?cb=20200105000439"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "nome": "Dragon Age: The Veilguard",
+    "categoria": "RPG / Fantasia",
+    "preco": 249.00,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1845910/library_600x900.jpg",
+    "descricao": "O capítulo mais recente da saga. Reúna a Guarda do Véu e enfrente deuses élvicos despertados em uma aventura que une os fios da trilogia em um confronto de proporções mitológicas."
+  },
+  {
+    "id": 12,
+    "nome": "Pathfinder: Wrath of the Righteous",
+    "categoria": "RPG / cRPG",
+    "preco": 99.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1184370/library_600x900.jpg",
+    "descricao": "Lidere uma cruzada sagrada contra uma invasão demoníaca em um RPG com profundidade de sistema de regras inigualável. Escolha entre mais de 25 classes e torne-se uma lenda.",
+    "dlcs": [
+      {
+        "id": "pfwr-sp1",
+        "nome": "Season Pass",
+        "descricao": "Acesso às três primeiras expansões da campanha: Through the Ashes, Inevitable Excess e The Last Sarkorians — novas histórias, companheiros e desafios que ampliam a cruzada.",
+        "preco": 99.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1694801/header.jpg"
+      },
+      {
+        "id": "pfwr-sp2",
+        "nome": "Season Pass 2",
+        "descricao": "A segunda temporada de expansões: Lord of Nothing e aventuras adicionais que aprofundam a mitologia de Golarion com novos caminhos míticos e finais inéditos.",
+        "preco": 99.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/2145870/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "nome": "Pillars of Eternity II: Deadfire",
+    "categoria": "RPG / cRPG",
+    "preco": 74.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/560130/library_600x900.jpg",
+    "descricao": "Persiga um deus fugitivo pelos mares do arquipélago Deadfire em um RPG isométrico com narrativa de tirar o fôlego, combate em tempo real com pausa e um sistema de reputação reativo."
+  },
+  {
+    "id": 14,
+    "nome": "Tyranny",
+    "categoria": "RPG / cRPG",
+    "preco": 59.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/362960/library_600x900.jpg",
+    "descricao": "E se o mal já tivesse vencido? Você é um funcionário do senhor das trevas Kyros e deve aplicar sua vontade em um mundo conquistado. Suas escolhas determinam quem sobrevive — e quem não."
+  },
+  {
+    "id": 15,
+    "nome": "Dark Souls Remastered",
+    "categoria": "RPG / Souls-like",
+    "preco": 154.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/570940/library_600x900.jpg",
+    "descricao": "O clássico que redefiniu o gênero. Explore Lordran em alta definição a 60fps, enfrente chefes brutais e desvende uma das narrativas mais densas e misteriosas já construídas em um RPG de ação."
+  },
+  {
+    "id": 16,
+    "nome": "Dark Souls II: Scholar of the First Sin",
+    "categoria": "RPG / Souls-like",
+    "preco": 129.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/335300/library_600x900.jpg",
+    "descricao": "A edição definitiva do segundo capítulo da saga. Inimigos reposicionados, novos encontros e um enredo expandido transformam esta versão em uma experiência renovada para veteranos e iniciantes."
+  },
+  {
+    "id": 17,
+    "nome": "Dark Souls III",
+    "categoria": "RPG / Souls-like",
+    "preco": 229.90,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/374320/library_600x900.jpg",
+    "descricao": "O capítulo final da trilogia. Combate mais fluido, chefes espetaculares e uma direção de arte deslumbrante culminam no adeus mais grandioso que o gênero já recebeu.",
+    "dlcs": [
+      {
+        "id": "ds3-ariandel",
+        "nome": "Ashes of Ariandel",
+        "descricao": "Explore um mundo pintado corrompido por uma praga e descubra os segredos que seus habitantes escondem. Inclui novo mapa, chefes, armas, armaduras e o modo PvP arena.",
+        "preco": 82.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/506970/header.jpg"
+      },
+      {
+        "id": "ds3-ringed",
+        "nome": "The Ringed City",
+        "descricao": "A expansão final de Dark Souls III. Viaje até o fim do mundo e descubra a Cidade Encantada, lar dos primeiros humanos — com os chefes mais brutais e épicos de toda a trilogia.",
+        "preco": 82.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/506971/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "nome": "Elden Ring",
+    "categoria": "RPG / Souls-like",
+    "preco": 274.50,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/library_600x900.jpg",
+    "descricao": "Uma colaboração entre Hidetaka Miyazaki e George R. R. Martin. Explore as Terras Intermédias em um vasto mundo aberto repleto de reinos, dungeons, chefes lendários e uma mitologia profunda.",
+    "dlcs": [
+      {
+        "id": "er-sote",
+        "nome": "Shadow of the Erdtree",
+        "descricao": "A expansão premiada como melhor DLC do The Game Awards 2024. Explore a Terra das Sombras, um reino oculto de beleza e terror, com dezenas de novas masmorras, chefes, armas e magias.",
+        "preco": 182.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/2778580/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "nome": "Avowed",
+    "categoria": "RPG / Fantasia",
+    "preco": 249.00,
+    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/2457220/library_600x900.jpg",
+    "descricao": "Um RPG de ação em primeira pessoa ambientado no mundo de Eora, da Obsidian Entertainment. Explore as enigmáticas Terras Vivas, forje alianças, revele conspirações e empunhe magia e aço para moldar o destino de uma terra em turbulência.",
+    "dlcs": [
+      {
+        "id": "avowed-premium",
+        "nome": "Premium Upgrade",
+        "descricao": "Pacote cosmético premium: 2 conjuntos de skins exclusivas para os companheiros (coleções Obsidian e Eora), acesso antecipado de 5 dias, artbook digital e trilha sonora original.",
+        "preco": 99.90,
+        "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/3281800/header.jpg"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "nome": "World of Warcraft",
+    "categoria": "MMORPG / Assinatura",
+    "tipo": "assinatura",
+    "imagem": "https://wow.zamimg.com/uploads/screenshots/normal/479997.jpg",
+    "descricao": "O MMORPG que definiu um gênero. Explore o vasto mundo de Azeroth com milhões de jogadores, enfrente masmorras épicas, guerras entre facções e expansões que adicionam continentes inteiros ao jogo.",
+    "planos": [
+      { "id": "wow-1m",  "label": "1 mês",   "duracao": "30 dias",  "preco": 54.90  },
+      { "id": "wow-3m",  "label": "3 meses",  "duracao": "90 dias",  "preco": 153.71, "desconto": "6% de desconto" },
+      { "id": "wow-6m",  "label": "6 meses",  "duracao": "180 dias", "preco": 285.45, "desconto": "13% de desconto" },
+      { "id": "wow-12m", "label": "12 meses", "duracao": "365 dias", "preco": 570.90, "desconto": "13% de desconto" }
+    ]
+  }
+]

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calabouço do Pix | Checkout</title>
+    <meta name="description" content="Finalize sua compra no Calabouço do Pix de forma rápida e segura.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Calabouço do Pix</a></h1>
+    </header>
+
+    <div class="container checkout-grid">
+
+        <!-- Formulário fictício de pagamento -->
+        <div class="coluna-form">
+            <h2>Dados de Pagamento</h2>
+
+            <!-- Seletor de método de pagamento -->
+            <div class="metodo-pagamento">
+                <label class="metodo-opcao selecionado" id="label-cartao" for="metodo-cartao">
+                    <input type="radio" name="metodo" id="metodo-cartao" value="cartao"
+                           checked onchange="trocarMetodo('cartao')">
+                    <span class="metodo-icone">💳</span>
+                    <span class="metodo-texto">Cartão de Crédito</span>
+                </label>
+                <label class="metodo-opcao" id="label-pix" for="metodo-pix">
+                    <input type="radio" name="metodo" id="metodo-pix" value="pix"
+                           onchange="trocarMetodo('pix')">
+                    <span class="metodo-icone">⚡</span>
+                    <span class="metodo-texto">
+                        PIX
+                        <span class="metodo-desconto-badge">5% OFF</span>
+                    </span>
+                </label>
+            </div>
+
+            <form id="form-checkout" onsubmit="finalizarCompra(event)">
+
+                <!-- Campos de cartão — visíveis por padrão -->
+                <div id="campos-cartao">
+                    <div class="form-group">
+                        <label for="nome-cartao">Nome no Cartão</label>
+                        <input type="text" id="nome-cartao" placeholder="Ex: Aragorn Filho de Arathorn">
+                    </div>
+                    <div class="form-group">
+                        <label for="num-cartao">Número do Cartão (Fictício)</label>
+                        <input type="text" id="num-cartao" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="validade">Validade</label>
+                            <input type="text" id="validade" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campos de PIX — ocultos por padrão -->
+                <div id="campos-pix" style="display: none;">
+                    <div class="pix-instrucoes">
+                        <div class="pix-qrcode" aria-label="QR Code fictício do PIX">
+                            <!-- QR code simulado com CSS puro -->
+                            <div class="qr-simulado">
+                                <div class="qr-inner">🏰</div>
+                            </div>
+                        </div>
+                        <p class="pix-chave-label">Chave PIX (fictícia)</p>
+                        <div class="pix-chave-box">
+                            <span id="pix-chave-texto">calabouco-do-pix@dungeon.com</span>
+                            <button type="button" class="btn-copiar" onclick="copiarChavePix()" aria-label="Copiar chave PIX">
+                                Copiar
+                            </button>
+                        </div>
+                        <p class="pix-nota">Escaneie o QR Code ou copie a chave. O pagamento é confirmado automaticamente.</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-confirmar" id="btn-confirmar">
+                    Confirmar Pagamento
+                </button>
+            </form>
+        </div>
+
+        <!-- Resumo do pedido puxado do LocalStorage -->
+        <div class="coluna-resumo">
+            <h2>Resumo do Pedido</h2>
+            <ul id="lista-resumo">
+                <!-- Itens injetados pelo JS -->
+            </ul>
+            <div id="desconto-pix-linha" style="display: none;"
+                 class="desconto-pix-resumo">
+                <span>Desconto PIX (5%)</span>
+                <span id="valor-desconto-pix" style="color: var(--neon-accent);">— R$ 0,00</span>
+            </div>
+            <div class="total-box" id="total-resumo">R$ 0,00</div>
+            <a href="index.html" style="color: var(--text-muted); text-decoration: none; display: block; text-align: center; margin-top: 10px;">← Voltar para a Loja</a>
+        </div>
+
+    </div>
+
+    <!-- Modal de sucesso para cartão -->
+    <div class="modal-sucesso" id="modal-sucesso-cartao" aria-live="assertive">
+        <h1>🎲 Compra Confirmada!</h1>
+        <p>Agradecemos por jogar seu dinheiro no Calabouço do Pix.</p>
+        <p>Preparando seus pergaminhos... Redirecionando para a taverna em 3 segundos.</p>
+        <div class="spinner" aria-hidden="true"></div>
+    </div>
+
+    <!-- Modal de sucesso para PIX -->
+    <div class="modal-sucesso" id="modal-sucesso-pix" aria-live="assertive">
+        <h1>⚡ PIX Recebido!</h1>
+        <p>Que aventureiro esperto — economizou 5% pagando com PIX.</p>
+        <p>Seus pergaminhos estão a caminho... Redirecionando para a taverna em 3 segundos.</p>
+        <div class="spinner" aria-hidden="true"></div>
+    </div>
+
+    <script>
+        // Guarda o total bruto (sem desconto) para calcular o desconto PIX
+        let totalBruto = 0;
+
+        // Ao carregar a página, puxa os itens do carrinho salvos no LocalStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const carrinhoSalvo = localStorage.getItem('carrinhoCompras');
+
+            // Se não houver itens no carrinho, redireciona para a home
+            if (!carrinhoSalvo || carrinhoSalvo === '[]') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const carrinho = JSON.parse(carrinhoSalvo);
+            const lista = document.getElementById('lista-resumo');
+            const totalElement = document.getElementById('total-resumo');
+
+            // Agrupa itens duplicados para mostrar quantidade.
+            // Para assinaturas, a chave inclui o planoId para distinguir planos diferentes.
+            const agrupados = carrinho.reduce((acc, item) => {
+                const chave = item.tipo === 'assinatura'
+                    ? `${item.id}-${item.planoId}`
+                    : String(item.id);
+                const existente = acc.find(i => i._chave === chave);
+                if (existente) {
+                    existente.quantidade++;
+                } else {
+                    acc.push({ ...item, quantidade: 1, _chave: chave });
+                }
+                return acc;
+            }, []);
+
+            // Renderiza o resumo e acumula o total bruto
+            agrupados.forEach(item => {
+                const subtotal = item.preco * item.quantidade;
+                totalBruto += subtotal;
+                const qtdLabel = item.quantidade > 1 ? ` (x${item.quantidade})` : '';
+                const subLabel = item.tipo === 'assinatura'
+                    ? `<small style="color: var(--text-muted); display: block;">Plano ${item.planoLabel}</small>`
+                    : '';
+                lista.innerHTML += `
+                    <li>
+                        <span>${item.nome}${qtdLabel}${subLabel}</span>
+                        <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                    </li>
+                `;
+            });
+
+            totalElement.innerText = `R$ ${totalBruto.toFixed(2).replace('.', ',')}`;
+        });
+
+        // Alterna entre os métodos de pagamento.
+        // Mostra/oculta os campos correspondentes e atualiza o total.
+        function trocarMetodo(metodo) {
+            const labelCartao = document.getElementById('label-cartao');
+            const labelPix    = document.getElementById('label-pix');
+            const camposCartao = document.getElementById('campos-cartao');
+            const camposPix    = document.getElementById('campos-pix');
+            const linhaDesconto = document.getElementById('desconto-pix-linha');
+            const valorDesconto = document.getElementById('valor-desconto-pix');
+            const totalElement  = document.getElementById('total-resumo');
+            const btnConfirmar  = document.getElementById('btn-confirmar');
+
+            if (metodo === 'pix') {
+                // Ativa o visual do PIX
+                labelPix.classList.add('selecionado');
+                labelCartao.classList.remove('selecionado');
+                camposCartao.style.display = 'none';
+                camposPix.style.display = 'block';
+                btnConfirmar.textContent = 'Confirmar Pagamento via PIX';
+
+                // Calcula e exibe o desconto de 5%
+                const desconto = totalBruto * 0.05;
+                const totalComDesconto = totalBruto - desconto;
+                linhaDesconto.style.display = 'flex';
+                valorDesconto.textContent = `— R$ ${desconto.toFixed(2).replace('.', ',')}`;
+                totalElement.textContent = `R$ ${totalComDesconto.toFixed(2).replace('.', ',')}`;
+            } else {
+                // Volta para cartão
+                labelCartao.classList.add('selecionado');
+                labelPix.classList.remove('selecionado');
+                camposCartao.style.display = 'block';
+                camposPix.style.display = 'none';
+                btnConfirmar.textContent = 'Confirmar Pagamento';
+
+                // Remove desconto
+                linhaDesconto.style.display = 'none';
+                totalElement.textContent = `R$ ${totalBruto.toFixed(2).replace('.', ',')}`;
+            }
+        }
+
+        // Copia a chave PIX fictícia para a área de transferência.
+        function copiarChavePix() {
+            const chave = document.getElementById('pix-chave-texto').textContent;
+            navigator.clipboard.writeText(chave).then(() => {
+                const btn = document.querySelector('.btn-copiar');
+                btn.textContent = 'Copiado!';
+                btn.style.background = 'var(--neon-accent)';
+                btn.style.color = '#000';
+                setTimeout(() => {
+                    btn.textContent = 'Copiar';
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
+
+        // Chamada ao enviar o formulário
+        function finalizarCompra(event) {
+            event.preventDefault();
+
+            // Determina qual modal mostrar baseado no método selecionado
+            const metodoPix = document.getElementById('metodo-pix').checked;
+            const modalId = metodoPix ? 'modal-sucesso-pix' : 'modal-sucesso-cartao';
+            document.getElementById(modalId).classList.add('ativo');
+
+            // Limpa o carrinho
+            localStorage.removeItem('carrinhoCompras');
+
+            // Redireciona após 3 segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

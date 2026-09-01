@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calabouço do Pix | Empresa Juridicamente questionável de video-jogos eletrônicos</title>
+    <meta name="description" content="Calabouço do Pix | Empresa Juridicamente questionável de video-jogos eletrônicos. Encontre os melhores títulos com os melhores preços.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <!-- Logo é um link para a home -->
+        <h1><a href="index.html">Calabouço do Pix</a></h1>
+        
+        <div class="header-actions">
+            <div class="links-uteis">
+                <a href="como-fiz.html">Como Fiz</a>
+            </div>
+            <!-- Botão que abre o painel lateral do carrinho -->
+            <button class="btn-abrir-carrinho" onclick="toggleCarrinho()" aria-label="Abrir carrinho de compras">
+                🛒 Carrinho <span class="contador-badge" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="busca-container">
+            <!-- oninput funciona melhor que onkeyup: captura colar, limpar e voz -->
+            <input type="text" id="busca" placeholder="Buscar jogo pelo nome..." oninput="filtrarProdutos()" aria-label="Buscar jogo pelo nome">
+        </div>
+        <div id="vitrine" aria-live="polite"></div>
+    </div>
+
+    <!-- Overlay escuro que aparece atrás do carrinho lateral -->
+    <div class="overlay" id="overlay" onclick="toggleCarrinho()" aria-hidden="true"></div>
+    
+    <!-- Carrinho Lateral (off-canvas) -->
+    <div class="carrinho-lateral" id="carrinho-lateral" aria-label="Grimório de compras">
+        <div class="carrinho-header">
+            <h2>Seu Grimório</h2>
+            <button class="btn-fechar" onclick="toggleCarrinho()" aria-label="Fechar carrinho">✖</button>
+        </div>
+        <ul id="lista-carrinho">
+            <li style="color: var(--text-muted);">Seu carrinho está vazio.</li>
+        </ul>
+        <div class="carrinho-footer">
+            <div class="total-linha">
+                <span>Total:</span>
+                <span id="total-carrinho">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" onclick="iniciarCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calabouço do Pix | Detalhes do Produto</title>
+    <meta name="description" content="Veja os detalhes, descrição e preço do produto no Calabouço do Pix.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">Calabouço do Pix</a></h1>
+        <div class="header-actions">
+            <div class="links-uteis"><a href="como-fiz.html">Como Fiz</a></div>
+            <button class="btn-abrir-carrinho" onclick="toggleCarrinho()" aria-label="Abrir carrinho de compras">
+                🛒 Carrinho <span class="contador-badge" id="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="voltar">← Voltar para a Vitrine</a>
+        
+        <!-- O JS injeta os detalhes do produto aqui -->
+        <div id="detalhe-produto">
+            <p>Consultando o Grimório...</p>
+        </div>
+    </div>
+
+    <!-- Overlay escuro -->
+    <div class="overlay" id="overlay" onclick="toggleCarrinho()" aria-hidden="true"></div>
+
+    <!-- Carrinho Lateral (off-canvas) -->
+    <div class="carrinho-lateral" id="carrinho-lateral" aria-label="Grimório de compras">
+        <div class="carrinho-header">
+            <h2>Seu Grimório</h2>
+            <button class="btn-fechar" onclick="toggleCarrinho()" aria-label="Fechar carrinho">✖</button>
+        </div>
+        <ul id="lista-carrinho">
+            <li style="color: var(--text-muted);">Seu carrinho está vazio.</li>
+        </ul>
+        <div class="carrinho-footer">
+            <div class="total-linha">
+                <span>Total:</span>
+                <span id="total-carrinho">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" onclick="iniciarCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
